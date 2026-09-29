@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanya Singh — AI/ML Engineer</title>
+<meta name="description" content="Tanya Singh — AI/ML Engineer building agentic systems, RAG pipelines, and explainable AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12151A;
+    --bg-soft: #171B22;
+    --surface: #1E232C;
+    --text: #ECE9E2;
+    --text-dim: #9AA0AC;
+    --text-faint: #626873;
+    --accent: #86BFAF;
+    --accent-warm: #D8AC63;
+    --line: #2A3038;
+    --line-soft: #21262E;
+    --maxw: 780px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s ease; }
+  a:hover{ border-bottom-color: var(--accent); }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  h1,h2,h3{ font-family: 'Fraunces', serif; font-weight: 500; margin: 0; color: var(--text); }
+
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position: sticky; top:0; z-index: 10;
+    background: rgba(18,21,26,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding: 16px 28px; max-width: 920px; }
+  .nav-name{ font-family:'Fraunces', serif; font-size: 18px; color: var(--text); }
+  .nav-links{ display:flex; gap: 26px; font-size: 15px; }
+  .nav-links a{ color: var(--text-dim); }
+  .nav-links a:hover{ color: var(--text); }
+
+  /* ---------- Hero ---------- */
+  header.hero{ padding: 88px 0 64px; }
+  .hero-grid{
+    max-width: 920px; margin: 0 auto; padding: 0 28px;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;
+  }
+  .hero h1{ font-size: 44px; line-height: 1.12; letter-spacing: -0.01em; }
+  .hero .role{ color: var(--accent); font-size: 19px; margin-top: 14px; font-family:'Fraunces', serif; }
+  .hero p.lede{ color: var(--text-dim); max-width: 46ch; margin-top: 18px; font-size: 16.5px; }
+  .hero-links{ display:flex; gap: 20px; margin-top: 28px; font-size: 15px; flex-wrap: wrap; }
+
+  .node-art{ width: 100%; height: auto; }
+  .node-art .line{ stroke: var(--line); stroke-width: 1.4; fill:none; }
+  .node-art .line-anim{ stroke-dasharray: 240; stroke-dashoffset: 240; animation: draw 1.4s ease forwards; }
+  .node-art circle.core{ fill: var(--bg-soft); stroke: var(--accent); stroke-width: 1.6; }
+  .node-art circle.leaf{ fill: var(--bg-soft); stroke: var(--text-faint); stroke-width: 1.4; }
+  .node-art text{ font-family:'Inter', sans-serif; fill: var(--text-dim); font-size: 10.5px; }
+  .node-art .core-label{ fill: var(--text); font-size: 11px; }
+  @keyframes draw{ to{ stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce){
+    .node-art .line-anim{ animation:none; stroke-dashoffset:0; }
+  }
+
+  /* ---------- Sections ---------- */
+  section{ padding: 56px 0; border-top: 1px solid var(--line-soft); }
+  section .wrap{ max-width: var(--maxw); }
+  .section-title{ font-size: 26px; margin-bottom: 22px; }
+  section > .wrap > p{ color: var(--text-dim); max-width: 62ch; }
+
+  /* ---------- About ---------- */
+  #about p{ margin-top: 14px; }
+  #about p:first-of-type{ margin-top: 0; }
+
+  /* ---------- Experience ---------- */
+  .job{ margin-bottom: 30px; }
+  .job:last-child{ margin-bottom: 0; }
+  .job-head{ display:flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .job-head h3{ font-size: 19px; }
+  .job-dates{ color: var(--text-faint); font-size: 14px; white-space: nowrap; }
+  .job-org{ color: var(--text-dim); font-size: 15px; margin-top: 4px; }
+  .job ul{ margin: 14px 0 0; padding-left: 20px; color: var(--text-dim); font-size: 15.5px; }
+  .job li{ margin-bottom: 8px; }
+  .job li:last-child{ margin-bottom: 0; }
+  .subproject{ margin-top: 18px; padding-left: 18px; border-left: 1px solid var(--line); }
+  .subproject h4{ font-family:'Inter',sans-serif; font-weight:600; font-size: 15px; color: var(--text); margin: 0 0 8px; }
+
+  /* ---------- Work ---------- */
+  .work-item{ padding: 26px 0; border-bottom: 1px solid var(--line-soft); }
+  .work-item:first-of-type{ padding-top: 0; }
+  .work-item:last-child{ border-bottom: none; padding-bottom: 0; }
+  .work-item.major h3{ font-size: 21px; }
+  .work-item.minor h3{ font-size: 17px; font-family:'Inter',sans-serif; font-weight:600; }
+  .work-tag{ color: var(--accent-warm); font-size: 13px; margin-bottom: 8px; display:block; }
+  .work-item p{ color: var(--text-dim); margin-top: 10px; font-size: 15.5px; max-width: 60ch; }
+  .work-item .stack{ color: var(--text-faint); font-size: 13.5px; margin-top: 10px; }
+  .work-item .work-link{ font-size: 14px; margin-top: 10px; display:inline-block; }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 22px 40px; margin-top: 8px; }
+  .skill-group h4{ font-family:'Inter',sans-serif; font-size: 13.5px; font-weight:600; color: var(--text-faint); margin: 0 0 8px; }
+  .skill-group p{ color: var(--text-dim); font-size: 15px; margin: 0; }
+
+  /* ---------- Certifications ---------- */
+  #certs ul{ list-style: none; padding: 0; margin: 0; color: var(--text-dim); font-size: 15.5px; }
+  #certs li{ padding: 10px 0; border-bottom: 1px solid var(--line-soft); }
+  #certs li:last-child{ border-bottom: none; }
+  #certs .issuer{ color: var(--text-faint); font-size: 13.5px; }
+
+  /* ---------- Contact / Footer ---------- */
+  footer{ padding: 60px 0 50px; border-top: 1px solid var(--line-soft); }
+  footer h2{ font-size: 28px; }
+  footer p{ color: var(--text-dim); margin-top: 12px; max-width: 50ch; }
+  .contact-links{ display:flex; gap: 24px; margin-top: 24px; font-size: 16px; flex-wrap: wrap; }
+  .foot-note{ margin-top: 50px; color: var(--text-faint); font-size: 13px; }
+
+  @media (max-width: 720px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero h1{ font-size: 34px; }
+    .node-art{ max-width: 320px; margin: 0 auto; }
+    .skills-grid{ grid-template-columns: 1fr; }
+    .nav-links{ gap: 16px; font-size: 14px; }
+    section{ padding: 42px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Tanya Singh</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <h1>Systems that show<br>their reasoning.</h1>
+      <div class="role">AI/ML Engineer — Agentic Systems &amp; RAG</div>
+      <p class="lede">I build multi-agent AI systems, retrieval pipelines, and explainable models — the kind where you can trace exactly why an answer came out the way it did.</p>
+      <div class="hero-links">
+        <a href="#work">See my work ↓</a>
+        <a href="https://github.com/tanyas28" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/tanya-singh-905811248/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div>
+      <svg class="node-art" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of a central orchestrator agent connected to four specialist agents">
+        <path class="line line-anim" d="M160 130 L80 60" style="animation-delay:.05s"/>
+        <path class="line line-anim" d="M160 130 L250 55" style="animation-delay:.15s"/>
+        <path class="line line-anim" d="M160 130 L60 190" style="animation-delay:.25s"/>
+        <path class="line line-anim" d="M160 130 L245 205" style="animation-delay:.35s"/>
+        <path class="line line-anim" d="M160 130 L160 40" style="animation-delay:.45s"/>
+
+        <circle class="leaf" cx="80" cy="60" r="26"/>
+        <text x="80" y="64" text-anchor="middle">Retrieval</text>
+
+        <circle class="leaf" cx="250" cy="55" r="26"/>
+        <text x="250" y="59" text-anchor="middle">Compliance</text>
+
+        <circle class="leaf" cx="60" cy="190" r="26"/>
+        <text x="60" y="194" text-anchor="middle">Analysis</text>
+
+        <circle class="leaf" cx="245" cy="205" r="26"/>
+        <text x="245" y="209" text-anchor="middle">Risk</text>
+
+        <circle class="leaf" cx="160" cy="40" r="22"/>
+        <text x="160" y="44" text-anchor="middle">Intent</text>
+
+        <circle class="core" cx="160" cy="130" r="34"/>
+        <text class="core-label" x="160" y="134" text-anchor="middle">Orchestrator</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="section-title">About</h2>
+    <p>I'm an AI/ML Engineer at Cognizant, where I split my time between full-stack engineering on a production agentic RAG application and — earlier — building a multi-agent HR analytics platform from the ground up using LangGraph.</p>
+    <p>What pulls me in is understanding how these systems actually work underneath: retrieval, orchestration, access control, the failure modes of AI-generated code. I'd rather trace a bug back to its root cause than patch the symptom, and I use AI coding tools daily — but I review everything they produce line by line.</p>
+    <p>Outside work, I build personal projects around explainable, auditable AI: systems where the reasoning behind a decision is visible, not a black box.</p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <h2 class="section-title">Selected work</h2>
+
+    <div class="work-item major">
+      <span class="work-tag">Personal project</span>
+      <h3>SentinelAI — Multi-Agent Financial Risk Detection</h3>
+      <p>A five-agent system — Transaction, Credit, News Intelligence, Compliance, and a final Risk Analyst — that independently evaluates financial risk signals and merges them into one auditable verdict. LLM reasoning is paired with deterministic rule engines, so outputs are explainable rather than a black box, communicated between agents through strict JSON contracts.</p>
+      <div class="stack">LLMs (Groq Llama-3.1-8B) · Rule engines · Multi-agent orchestration · Streamlit</div>
+      <a class="work-link" href="https://github.com/tanyas28/Sentinel-AI" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+    <div class="work-item major">
+      <span class="work-tag">Cognizant</span>
+      <h3>Multi-Agent HR Analytics Platform</h3>
+      <p>Built end-to-end using LangGraph: domain-specific agents, hybrid retrieval (structured + vector search via OpenSearch) with RAG pipelines over PDF, text, and JSON data, intent classification and query routing, and an orchestration agent enforcing role-based access control — integrated with AWS Bedrock LLMs, memory, and guardrails.</p>
+      <div class="stack">LangGraph · AWS Bedrock · OpenSearch · FastAPI · RAG</div>
+    </div>
+
+    <div class="work-item minor">
+      <span class="work-tag">Personal project</span>
+      <h3>Explainable Brain Tumor Classification</h3>
+      <p>Transfer learning with pretrained CNNs (VGG16, DenseNet121) to classify brain tumors from MRI scans, with Grad-CAM visualizations to show which regions of an image drove each prediction.</p>
+      <div class="stack">TensorFlow/Keras · CNNs · Grad-CAM</div>
+    </div>
+
+    <div class="work-item minor">
+      <span class="work-tag">Personal project</span>
+      <h3>EEG-Based Deep Learning for Neurological Detection</h3>
+      <p>A deep learning model trained on EEG signal data to detect patterns associated with epilepsy and schizophrenia.</p>
+      <div class="stack">Deep learning · Signal processing</div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2 class="section-title">Experience</h2>
+    <div class="job">
+      <div class="job-head">
+        <h3>Programmer Analyst — GN</h3>
+        <span class="job-dates">Jul 2025 – Present</span>
+      </div>
+      <div class="job-org">Cognizant, Chennai</div>
+
+      <div class="subproject">
+        <h4>Agentic RAG Application — Jul 2026 – Present</h4>
+        <ul>
+          <li>Redesigned application access control from a hybrid config/role-based model to fully role-based, resolving permission conflicts during feature rollouts</li>
+          <li>Built dependency-validation logic for AI model deletion in the admin catalog, preventing unintended breakage of dependent products</li>
+          <li>Refactored duplicated report-export logic across multiple modules into a single shared service, applying loose-coupling principles</li>
+        </ul>
+      </div>
+
+      <div class="subproject">
+        <h4>Multi-Agent HR Analytics Platform — Feb 2026 – Jul 2026</h4>
+        <ul>
+          <li>Built a multi-agent platform using LangGraph, with hybrid retrieval and RAG pipelines over PDF, text, and JSON data</li>
+          <li>Integrated AWS Bedrock LLMs with agent memory, guardrails, and role-based query routing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>AI / ML</h4>
+        <p>LangGraph, Agentic AI, RAG, LLM Orchestration, Prompt Engineering, Explainable AI, Deep Learning</p>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud &amp; Platforms</h4>
+        <p>AWS Bedrock, AWS SageMaker, Azure AI Studio, AWS, Microsoft Azure</p>
+      </div>
+      <div class="skill-group">
+        <h4>Search &amp; Data</h4>
+        <p>OpenSearch, Vector Databases, MongoDB</p>
+      </div>
+      <div class="skill-group">
+        <h4>Engineering</h4>
+        <p>Python, TypeScript, FastAPI, Angular, System Design, RBAC, Git</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <h2 class="section-title">Certifications</h2>
+    <ul>
+      <li>Claude Certified Associate (Foundation) <span class="issuer">— Anthropic</span></li>
+      <li>Build with Gemini <span class="issuer">— Google</span></li>
+      <li>AI-900: Microsoft Azure AI Fundamentals <span class="issuer">— Microsoft</span></li>
+      <li>AWS SageMaker Practical for Beginners <span class="issuer">— Udemy</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk.</h2>
+    <p>Open to AI/ML engineering roles — especially ones involving agentic systems, RAG infrastructure, or explainable AI. Reach out directly or find me on LinkedIn and GitHub.</p>
+    <div class="contact-links">
+      <a href="mailto:tanyamarch2003@gmail.com">tanyamarch2003@gmail.com</a>
+      <a href="https://www.linkedin.com/in/tanya-singh-905811248/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/tanyas28" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="foot-note">Lucknow, Uttar Pradesh, India</div>
+  </div>
+</footer>
+
+</body>
+</html>
